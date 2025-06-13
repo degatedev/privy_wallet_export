@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Export My Privy Wallet</title>
+
+    <!-- Tailwind (for quick styling; swap out if you prefer) -->
+    <script src="https://cdn.tailwindcss.com/3.4.4"></script>
+
+    <!-- React & ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+
+    <!-- Privy React SDK (UMD build) -->
+    <script src="https://unpkg.com/@privy-io/react-auth@latest/dist/privy.min.js"></script>
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- React mount point -->
+    <div id="root"></div>
+
+    <script type="text/javascript">
+      // Pull exports from global UMD bundle
+      const {
+        PrivyProvider,
+        usePrivy,
+        PrivyReact,
+      } = window.PrivyReactAuth;
+
+      /** Wallet-export button */
+      function ExportWalletButton() {
+        const { ready, authenticated, user, exportWallet, login } = usePrivy();
+
+        const hasPrivyWallet =
+          user?.linkedAccounts?.some(
+            (a) =>
+              a.type === "wallet" &&
+              a.walletClient === "privy" &&
+              a.chainType === "ethereum"
+          ) ?? false;
+
+        if (!ready) {
+          return (
+            <button
+              disabled
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-white opacity-40"
+            >
+              Loading…
+            </button>
+          );
+        }
+
+        if (!authenticated) {
+          return (
+            <button
+              onClick={login}
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+            >
+              Log in to export wallet
+            </button>
+          );
+        }
+
+        if (!hasPrivyWallet) {
+          return (
+            <p className="text-center text-gray-700">
+              No embedded Privy wallet found for this account.
+            </p>
+          );
+        }
+
+        return (
+          <button
+            onClick={exportWallet}
+            className="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+          >
+            Export My Wallet
+          </button>
+        );
+      }
+
+      /** Root app */
+      function App() {
+        return (
+          <div className="flex h-screen flex-col items-center justify-center gap-6">
+            <h1 className="text-2xl font-semibold text-gray-800">
+              Privy Wallet Export Tool
+            </h1>
+            <ExportWalletButton />
+            <p className="max-w-xs text-center text-sm text-gray-500">
+              The private key is assembled locally in your browser—developers
+              cannot see it. Store it safely and only use it in a secure
+              environment!
+            </p>
+          </div>
+        );
+      }
+
+      // Render with ReactDOM
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(
+        React.createElement(
+          PrivyProvider,
+          {
+            appId: "YOUR_PRIVY_APP_ID_HERE", // ← Insert your Privy App ID
+            config: {
+              embeddedWallets: { requireUserSignature: false }, // set true if you want an extra confirmation signature
+            },
+          },
+          React.createElement(App)
+        )
+      );
+    </script>
+  </body>
+</html>
