@@ -2,7 +2,7 @@
   "name": "privy-wallet-export",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yourusername.github.io/privy_export",
+  "homepage": "https://degatedev.github.io/privy_wallet_export",
   "dependencies": {
     "@privy-io/react-auth": "^1.82.4",
     "@testing-library/jest-dom": "^5.17.0",
