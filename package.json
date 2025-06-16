@@ -42,5 +42,8 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.0"
+  },
+  "overrides": {
+    "typescript": "^4.9.5"
   }
 }
