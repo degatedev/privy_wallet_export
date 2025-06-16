@@ -12,7 +12,7 @@ function App() {
         appearance: {
           theme: 'light',
           accentColor: '#676FFF',
-          logo: 'https://your-logo-url',
+          logo: 'https://avatars.githubusercontent.com/u/80035388?v=4',
         },
         // Create embedded wallets for users who don't have a wallet
         embeddedWallets: {
