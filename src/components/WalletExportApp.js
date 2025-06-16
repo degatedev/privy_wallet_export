@@ -68,7 +68,7 @@ function WalletExportApp() {
     <div className="App">
       <div className="container">
         <div className="header">
-          <h1>🔐 Wallet Export</h1>
+          <h1>DeGate Email Login Wallet Export</h1>
           <p>
             Securely export your embedded wallet private key to use with MetaMask, 
             Phantom, or other wallet applications.
@@ -126,23 +126,11 @@ function WalletExportApp() {
           </div>
         )}
 
-        <div className="instructions">
-          <h3>📋 How to Import to MetaMask:</h3>
-          <ol>
-            <li>Click "Export Private Key" button above</li>
-            <li>Copy your private key from the modal</li>
-            <li>Open MetaMask extension</li>
-            <li>Click account menu → "Import Account"</li>
-            <li>Select "Private Key" and paste your key</li>
-            <li>Click "Import" to add your wallet</li>
-          </ol>
-          
-          <h3>🔒 Security Notes:</h3>
+        <div className="instructions">          
+          <h3 className="security-title">🔒 Security Notes:</h3>
           <ul>
             <li>Never share your private key with anyone</li>
-            <li>Store it securely offline if needed</li>
             <li>The private key gives full access to your wallet</li>
-            <li>Privy cannot recover lost private keys</li>
           </ul>
         </div>
       </div>

@@ -123,6 +123,10 @@
   color: #667eea;
 }
 
+.instructions h3.security-title {
+  color: #000000;
+}
+
 .instructions ol {
   padding-left: 20px;
 }
