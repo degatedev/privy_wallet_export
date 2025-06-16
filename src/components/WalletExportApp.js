@@ -68,16 +68,12 @@ function WalletExportApp() {
     <div className="App">
       <div className="container">
         <div className="header">
-          <h1>DeGate Email Login Wallet Export</h1>
-          <p>
-            Securely export your embedded wallet private key to use with MetaMask, 
-            Phantom, or other wallet applications.
-          </p>
+          <h2>DeGate Email Login(Privy) Wallet Export Tool</h2>
         </div>
 
         {!isAuthenticated ? (
           <div>
-            <p>Please login with your email to access your embedded wallet.</p>
+            <p>Please login with your email to access your privy wallet.</p>
             <button className="button" onClick={handleLogin}>
               Login with Email
             </button>
@@ -131,6 +127,10 @@ function WalletExportApp() {
           <ul>
             <li>Never share your private key with anyone</li>
             <li>The private key gives full access to your wallet</li>
+            <li>
+            Securely export your embedded wallet private key to use with MetaMask, 
+            Phantom, or other wallet applications.
+          </li>
           </ul>
         </div>
       </div>
